@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="myOrg" class="com.scully.models.Organization">
+        <constructor-arg name="companyName" type="java.lang.String" value="Scully Google"/>
+        <constructor-arg name="yearOfIncorporation" type="int" value="1989"/>
+        <property name="employeeCount" value="89347"/>
+        <property name="postalCode" value="666"/>
+        <property name="slogan" value="Organize the world's information and make it universally accessible"/>
+        <property name="businessService" ref="ecommerceService"/>
+    </bean>
+    <bean id="cloudService" class="com.scully.servicesImpl.CloudServiceImpl"/>
+    <bean id="ecommerceService" class="com.scully.servicesImpl.EcommerceServiceImpl"/>
+    <bean id="agency" class="com.scully.servicesImpl.AgencyRecruitmentServiceImpl"/>
+    <bean id="referral" class="com.scully.servicesImpl.ReferralRecruitmentServiceImpl"/>
+    <bean id="myHrdept" class="com.scully.models.HumanResourceDept">
+        <constructor-arg index="0" ref="referral"/>
+        <constructor-arg index="1" ref="myOrg"/>
+        <property name="departmentName" value="Human Resource Department"/>
+    </bean>
+</beans>
